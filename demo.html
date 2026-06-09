@@ -92,8 +92,8 @@
 
   <main>
     <h1>Jarvis Review Demo</h1>
-    <p>This page gives reviewers a clear UI walkthrough of the Jarvis TikTok posting flow: connect account, check creator capability, prepare content, submit, and check status.</p>
-    <p class="note">For TikTok review, the submitted demo video should show this Jarvis UI, the real sandbox authorization screen, the final user submit action, and the returned posting status.</p>
+    <p>This page gives reviewers a clear UI walkthrough of the Jarvis posting flow: connect account, check creator capability, prepare content, submit, and check status.</p>
+    <p class="note">For app review, the submitted demo video shows this Jarvis UI, sandbox/mock authorization, the final user submit action, and the returned posting status.</p>
 
     <section class="review-list" aria-label="Selected products and scopes">
       <div class="result">
@@ -137,7 +137,7 @@
             <div class="demo-grid">
               <div>
                 <h2>Account Connection</h2>
-                <p>The user starts the official TikTok authorization flow and approves Jarvis for the requested scopes. In the recorded review video, this step opens the real TikTok sandbox authorization screen.</p>
+                <p>The user starts the authorization flow and approves Jarvis for the requested scopes. In the recorded review video, this step is represented with reviewer-safe sandbox/mock authorization.</p>
                 <a class="button" href="./callback.html">Open registered callback page</a>
               </div>
               <div class="result">
@@ -231,7 +231,8 @@
       badge.textContent = labels[normalizedStep][1];
     }
 
-    showStep(window.location.hash.replace('#', ''));
+    const requestedStep = new URLSearchParams(window.location.search).get('step') || window.location.hash.replace('#', '');
+    showStep(requestedStep);
 
     document.querySelector('#submit-demo').addEventListener('click', () => {
       document.querySelector('#submit-result').classList.remove('hidden');
